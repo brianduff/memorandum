@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 import { MDXEditor, headingsPlugin, linkPlugin, listsPlugin, markdownShortcutPlugin, quotePlugin } from '@mdxeditor/editor'
+import "./Editor.css";
 
 export function Editor() {
   return (
