@@ -1,18 +1,16 @@
-import { Alignment, Button, Navbar } from '@blueprintjs/core'
+import { Alignment, Navbar } from '@blueprintjs/core'
 import './App.css'
-import { css } from '@emotion/react'
+import { Editor } from './components/Editor'
 
 function App() {
   return (
     <>
       <Navbar fixedToTop={true} >
         <Navbar.Group align={Alignment.LEFT}>
-          <Navbar.Heading>Hello</Navbar.Heading>
-          <Navbar.Divider />
+          <Navbar.Heading>Memorandum</Navbar.Heading>
         </Navbar.Group>
       </Navbar>
-      <Button>Let's go</Button>
-      <div css={css`color: red`}>Hello</div>
+      <Editor />
     </>
   )
 }
