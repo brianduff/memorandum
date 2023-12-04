@@ -1,8 +1,6 @@
-import { Alignment, Button, ButtonGroup, Navbar } from '@blueprintjs/core'
 import './App.css'
-import { Editor } from './components/Editor'
-import { css } from '@emotion/react'
-import { NoMemos } from './NoMemos'
+import { EditMemo } from './EditMemo'
+// import { NoMemos } from './NoMemos'
 
 function App() {
   return (
@@ -12,7 +10,7 @@ function App() {
           <Navbar.Heading>Memorandum</Navbar.Heading>
         </Navbar.Group>
       </Navbar> */}
-      <NoMemos />
+      <EditMemo />
     </>
   )
 }
