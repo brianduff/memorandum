@@ -5,6 +5,21 @@ on:
   pull_request:
 
 jobs:
+  build-backend-bazel:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install baselisk
+        run: |
+          npm install -g @bazel/bazelisk
+
+      - name: Build backend with bazel
+        run: |
+          bazel build //backend:backend
+
   test-backend:
     runs-on: ubuntu-latest
 
