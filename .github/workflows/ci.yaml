@@ -31,7 +31,7 @@ jobs:
 
       - name: Load docker image
         run: |
-          docker load --input ../bazel-bin/backend/backend_image_tar/tarball.tar
+          docker load --input bazel-bin/backend/backend_image_tar/tarball.tar
 
   test-backend:
     runs-on: ubuntu-latest
