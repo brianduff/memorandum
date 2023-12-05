@@ -58,10 +58,10 @@ oci_register_toolchains(
 load("@rules_oci//oci:pull.bzl", "oci_pull")
 
 oci_pull(
-    name = "distroless_cc",
-    digest = "sha256:8aad707f96620ee89e27febef51b01c6ff244277a3560fcfcfbe68633ef09193",
-    image = "gcr.io/distroless/cc-debian12",
-    platforms = ["linux/amd64","linux/arm64"],
+    name = "distroless_base",
+    image = "gcr.io/distroless/base-debian12",
+    tag = "debug",
+    platforms = ["linux/amd64", "linux/arm64/v8"],
 )
 
 
