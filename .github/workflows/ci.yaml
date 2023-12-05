@@ -40,7 +40,8 @@ jobs:
           sleep 5
           docker ps
           curl -s http://localhost:8080/statusz > /tmp/out
-          test $(</tmp/out) = "OZ"
+          echo "Response from server: $(</tmp/out)"
+          test "$(</tmp/out)" = "OK"
 
   test-backend:
     runs-on: ubuntu-latest
