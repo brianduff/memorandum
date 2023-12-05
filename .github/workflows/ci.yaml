@@ -34,11 +34,13 @@ jobs:
           docker load --input bazel-bin/backend/backend_image_tar/tarball.tar
 
       - name: Run docker image
+        shell: bash
         run: |
           docker run -i -p 8080:8080 --log-driver=none -a stdout -a stderr dubh/memorandum_backend:v0.0.1 &
           sleep 5
           docker ps
-          curl http://localhost:8080/statusz
+          curl -s http://localhost:8080/statusz > /tmp/out
+          test $(</tmp/out) = "OZ"
 
   test-backend:
     runs-on: ubuntu-latest
