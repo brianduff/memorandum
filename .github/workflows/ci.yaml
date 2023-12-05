@@ -36,7 +36,7 @@ jobs:
       - name: Run docker image
         run: |
           docker run -d -p 8080:8080 dubh/memorandum_backend:v0.0.1
-          curl http://localhost:8080/
+          curl http://localhost:8080/statusz
 
   test-backend:
     runs-on: ubuntu-latest
