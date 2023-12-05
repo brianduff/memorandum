@@ -20,7 +20,7 @@ load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
 # Step 3: Build image and add built layer to it
 oci_image(
     name = "backend_image",
-    base = "@distroless_base",
+    base = "@distroless_cc12",
     tars = [":backend_layer"],
     entrypoint = ["/backend"],
 )
