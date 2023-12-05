@@ -25,6 +25,14 @@ jobs:
         run: |
           bazel build //backend:backend
 
+      - name: Build docker image
+        run: |
+          bazel build //backend:backend_image_tar
+
+      - name: Load docker image
+        run: |
+          docker load --input ../bazel-bin/backend/backend_image_tar/tarball.tar
+
   test-backend:
     runs-on: ubuntu-latest
 
