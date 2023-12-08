@@ -1,6 +1,8 @@
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@npm//frontend:vite/package_json.bzl", vite_bin = "bin")
+load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
 
 # This macro expands to a link_npm_package for each third-party package in package.json
 npm_link_all_packages(name = "node_modules")
@@ -62,4 +64,25 @@ vite_bin.vite(
     args = ["build"],
     chdir = package_name(),
     out_dirs = ["dist"],
+)
+
+
+pkg_tar(
+  name = "static_tar",
+  srcs = glob(["dist/**"]),
+  package_dir = "/usr/share/nginx/html",
+  strip_prefix = "dist"
+)
+
+oci_image(
+    name = "frontend_image",
+    base = "@nginx_debian_slim",
+    tars = [
+      ":static_tar",
+    ],
+)
+oci_tarball(
+    name = "frontend_tarball",
+    image = ":frontend_image",
+    repo_tags = ["dubh/memorandum_frontend:latest"],
 )

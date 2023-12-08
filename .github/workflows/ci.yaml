@@ -28,15 +28,26 @@ jobs:
       - name: Load docker image
         run: |
           docker load --input bazel-bin/backend/backend_image_tar/tarball.tar
+          docker load --input bazel-bin/frontend/frontend_tarball/tarball.tar
 
-      - name: Run docker image
+      - name: Run backend in docker
         shell: bash
         run: |
-          docker run -i -p 8080:8080 --log-driver=none -a stdout -a stderr dubh/memorandum_backend:v0.0.1 &
+          docker run -i -p 8080:8080 --log-driver=none -a stdout -a stderr dubh/memorandum_backend:latest &
           sleep 5
           curl -s http://localhost:8080/statusz > /tmp/out
           echo "Response from server: $(</tmp/out)"
           test "$(</tmp/out)" = "OK"
+
+      - name: Run frontend in docker
+        shell: bash
+        run: |
+          docker run -i -p 8080:80 --log-driver=none -a stdout -a stderr dubh/memorandum_frontend:latest &
+          sleep 5
+          curl -s http://localhost:80 > /tmp/out
+          echo "Response from server: $(</tmp/out)"
+          test "$(</tmp/out)" = "OK"
+
 
   test-backend:
     runs-on: ubuntu-latest

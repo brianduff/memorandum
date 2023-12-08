@@ -1,6 +1,7 @@
 load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_library", "rust_test")
 load("@crate_index//:defs.bzl", "aliases", "all_crate_deps")
 load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
 
 rust_binary(
     name = "backend",
@@ -15,7 +16,6 @@ pkg_tar(
     srcs = [":backend"],
 )
 
-load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
 
 # Step 3: Build image and add built layer to it
 oci_image(
@@ -28,5 +28,5 @@ oci_image(
 oci_tarball(
   name = "backend_image_tar",
   image = ":backend_image",
-  repo_tags = ["dubh/memorandum_backend:v0.0.1"]
+  repo_tags = ["dubh/memorandum_backend:latest"]
 )
