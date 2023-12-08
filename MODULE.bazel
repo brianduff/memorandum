@@ -14,7 +14,7 @@ use_repo(oci, "distroless_cc12")
 nginx = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 nginx.pull(
     name = "nginx_debian_slim",
-    digest = "sha256:affc31e97c9b67d5ad1d461f32ec234a0758bf25755ea380526ab5e3dacdbf8e",
+    digest = "sha256:7dc1fb53813c6fd41931f53a41738b29949857e1a433d42d515ef6ed329650a8",
     image = "docker.io/library/nginx",
 #    platforms = ["linux/amd64", "linux/arm64/v8"],
 )
