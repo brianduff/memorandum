@@ -10,3 +10,5 @@ oci.pull(
     platforms = ["linux/amd64", "linux/arm64/v8"],
 )
 use_repo(oci, "distroless_cc12")
+
+bazel_dep(name = "rules_pkg", version = "0.9.1")
