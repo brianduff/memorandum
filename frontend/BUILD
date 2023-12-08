@@ -77,9 +77,9 @@ pkg_tar(
 oci_image(
     name = "frontend_image",
     base = "@nginx_debian_slim",
-    architecture = "arm64",
-    os = "linux",
-    variant = "v8",
+    # architecture = "arm64",
+    # os = "linux",
+    # variant = "v8",
     tars = [
       ":static_tar",
     ],
