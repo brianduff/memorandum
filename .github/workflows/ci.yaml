@@ -44,9 +44,8 @@ jobs:
         run: |
           docker run -i -p 8081:80 --log-driver=none -a stdout -a stderr dubh/memorandum_frontend:latest &
           sleep 5
-          echo "Done sleepin'"
-#          curl -s http://localhost:80 > /tmp/out
-#          echo "Response from server: $(</tmp/out)"
+          curl -s http://localhost:8081 > /tmp/out
+          echo "Response from server: $(</tmp/out)"
 #          test "$(</tmp/out)" = "OK"
 
 
