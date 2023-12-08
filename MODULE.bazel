@@ -1,0 +1,12 @@
+module(name = "memorandum", version = "1.0")
+
+bazel_dep(name = "rules_oci", version = "1.4.3")
+
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+oci.pull(
+    name = "distroless_cc12",
+    digest = "sha256:a9056d2232d16e3772bec3ef36b93a5ea9ef6ad4b4ed407631e534b85832cf40",
+    image = "gcr.io/distroless/cc-debian12",
+    platforms = ["linux/amd64", "linux/arm64/v8"],
+)
+use_repo(oci, "distroless_cc12")

@@ -30,41 +30,6 @@ load("@crate_index//:defs.bzl", "crate_repositories")
 
 crate_repositories()
 
-
-# Add rules_oci
-http_archive(
-    name = "rules_oci",
-    sha256 = "d41d0ba7855f029ad0e5ee35025f882cbe45b0d5d570842c52704f7a47ba8668",
-    strip_prefix = "rules_oci-1.4.3",
-    url = "https://github.com/bazel-contrib/rules_oci/releases/download/v1.4.3/rules_oci-v1.4.3.tar.gz",
-)
-
-load("@rules_oci//oci:dependencies.bzl", "rules_oci_dependencies")
-
-rules_oci_dependencies()
-
-load("@rules_oci//oci:repositories.bzl", "LATEST_CRANE_VERSION", "oci_register_toolchains")
-
-oci_register_toolchains(
-    name = "oci",
-    crane_version = LATEST_CRANE_VERSION,
-    # Uncommenting the zot toolchain will cause it to be used instead of crane for some tasks.
-    # Note that it does not support docker-format images.
-    # zot_version = LATEST_ZOT_VERSION,
-)
-
-# Pull distroless image
-
-load("@rules_oci//oci:pull.bzl", "oci_pull")
-
-oci_pull(
-    name = "distroless_cc12",
-    digest = "sha256:a9056d2232d16e3772bec3ef36b93a5ea9ef6ad4b4ed407631e534b85832cf40",
-    image = "gcr.io/distroless/cc-debian12",
-    platforms = ["linux/amd64", "linux/arm64/v8"],
-)
-
-
 http_archive(
     name = "rules_pkg",
     urls = [
