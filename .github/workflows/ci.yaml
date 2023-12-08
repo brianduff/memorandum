@@ -74,6 +74,25 @@ jobs:
           cargo clippy --no-deps
           cargo test
 
+  build-frontend-bazel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install baselisk
+        uses: bazelbuild/setup-bazelisk@v2
+
+      - name: Mount bazel cache
+        uses: actions/cache@v3
+        with:
+          path: "~/.cache/bazel"
+          key: bazel
+
+      - name: Build backend with bazel
+        run: |
+          bazel build //frontend/...
+
   test-frontend:
     runs-on: ubuntu-latest
     steps:
@@ -83,6 +102,7 @@ jobs:
       - name: Build and test frontend
         working-directory: ./frontend
         run: |
-          npm install
-          npm run build
-          npm run test
+          npm install -g pnpm
+          pnpm install
+          pnpm run build
+          pnpm run test
