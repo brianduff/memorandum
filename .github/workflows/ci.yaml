@@ -21,13 +21,9 @@ jobs:
           path: "~/.cache/bazel"
           key: bazel
 
-      - name: Build backend with bazel
+      - name: Build everything with bazel
         run: |
-          bazel build //backend:backend
-
-      - name: Build docker image
-        run: |
-          bazel build //backend:backend_image_tar
+          bazel build //...
 
       - name: Load docker image
         run: |
@@ -73,25 +69,6 @@ jobs:
           cargo build
           cargo clippy --no-deps
           cargo test
-
-  build-frontend-bazel:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install baselisk
-        uses: bazelbuild/setup-bazelisk@v2
-
-      - name: Mount bazel cache
-        uses: actions/cache@v3
-        with:
-          path: "~/.cache/bazel"
-          key: bazel
-
-      - name: Build backend with bazel
-        run: |
-          bazel build //frontend/...
 
   test-frontend:
     runs-on: ubuntu-latest
