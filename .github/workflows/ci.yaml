@@ -50,7 +50,11 @@ jobs:
 
       - name: Push backend to gcr
         shell: bash
+        env:
+          GCP_AUTH_CREDENTIAL: ${{ secrets.GCP_AUTH_CREDENTIAL }}
         run: |
+          echo $GCP_AUTH_CREDENTIAL > secret.json
+          gcloud auth activate-service-account --key-file=secret.json
           gcloud auth configure-docker
           bazel run //backend:push_backend
 
