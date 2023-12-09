@@ -2,7 +2,7 @@ load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@npm//frontend:vite/package_json.bzl", vite_bin = "bin")
 load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
-load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball", "oci_push")
 
 # This macro expands to a link_npm_package for each third-party package in package.json
 npm_link_all_packages(name = "node_modules")
@@ -85,4 +85,10 @@ oci_tarball(
     name = "frontend_tarball",
     image = ":frontend_image",
     repo_tags = ["dubh/memorandum_frontend:latest"],
+)
+oci_push(
+  name = "push_frontend",
+  image = ":frontend_image",
+  repository = "gcr.io/dubh-cloud/memorandum-frontend",
+  remote_tags = [ "latest" ]
 )
