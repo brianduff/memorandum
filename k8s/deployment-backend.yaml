@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memorandum-be
+  labels:
+    app: memorandum-be
+spec:
+  selector:
+    matchLabels:
+      app: memorandum-be
+  template:
+    metadata:
+      labels:
+        app: memorandum-be
+    spec:
+      containers:
+      - name: memorandum-backend
+        image: gcr.io/dubh-cloud/memorandum-backend:rel
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
