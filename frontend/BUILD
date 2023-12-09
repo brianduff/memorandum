@@ -69,7 +69,7 @@ vite_bin.vite(
 
 pkg_tar(
   name = "static_tar",
-  srcs = glob(["dist/**"]),
+  srcs = [ ":vite" ],
   package_dir = "/usr/share/nginx/html",
   strip_prefix = "dist"
 )
@@ -77,9 +77,6 @@ pkg_tar(
 oci_image(
     name = "frontend_image",
     base = "@nginx_debian_slim",
-    # architecture = "arm64",
-    # os = "linux",
-    # variant = "v8",
     tars = [
       ":static_tar",
     ],
