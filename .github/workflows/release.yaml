@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install baselisk
+        uses: bazelbuild/setup-bazelisk@v2
+
+      - name: Push to gcr
+        shell: bash
+        env:
+          GCP_AUTH_CREDENTIAL: ${{ secrets.GCP_AUTH_CREDENTIAL }}
+        run: |
+          echo $GCP_AUTH_CREDENTIAL > secret.json
+          gcloud auth activate-service-account --key-file=secret.json
+          gcloud auth configure-docker
+          bazel run //backend:push_backend -- --tag latest --tag "${{github.ref_name}}"
+          bazel run //frontend:push_frontend -- --tag latest --tag "${{github.ref_name}}"

@@ -34,5 +34,5 @@ oci_push(
   name = "push_backend",
   image = ":backend_image",
   repository = "gcr.io/dubh-cloud/memorandum-backend",
-  remote_tags = [ "latest" ]
+#  remote_tags = [ "latest" ]
 )

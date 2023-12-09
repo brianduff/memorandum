@@ -90,5 +90,5 @@ oci_push(
   name = "push_frontend",
   image = ":frontend_image",
   repository = "gcr.io/dubh-cloud/memorandum-frontend",
-  remote_tags = [ "latest" ]
+#  remote_tags = [ "latest" ]
 )
