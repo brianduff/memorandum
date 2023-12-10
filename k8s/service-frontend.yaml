@@ -8,7 +8,7 @@ spec:
     app: memorandum-fe
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 8050
+      port: 8050
+      targetPort: 80
   externalIPs:
   - "34.172.80.103"
