@@ -3,10 +3,12 @@ kind: Service
 metadata:
   name: memorandum-fe-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: memorandum-fe
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 8050
+  externalIPs:
+  - "34.172.80.103"
