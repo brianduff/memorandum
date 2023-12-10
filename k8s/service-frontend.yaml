@@ -5,7 +5,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app.kubernetes.io/name: memorandum-fe
+    app: memorandum-fe
   ports:
     - protocol: TCP
       port: 80
