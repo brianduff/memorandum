@@ -43,10 +43,12 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: instance4.dufflin.com
+  - host: "instance4.dufflin.com"
     http:
       paths:
-      - backend:
+      - pathType: Prefix
+        path: "/"
+        backend:
           service:
             name: memorandum-fe-service
             port:
