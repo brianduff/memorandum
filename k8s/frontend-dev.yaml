@@ -8,7 +8,7 @@ metadata:
   annotations:
     keel.sh/policy: force
     keel.sh/trigger: poll
-    keel.sh/pollSchedule: "@every 5m"
+    keel.sh/pollSchedule: "@every 1m"
 spec:
   selector:
     matchLabels:
@@ -50,7 +50,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: "instance4-dev.dufflin.com"
+  - host: "memo-dev.dufflin.com"
     http:
       paths:
       - pathType: Prefix
