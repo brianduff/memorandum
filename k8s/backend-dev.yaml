@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: memorandum-dev
+  name: memorandum-be
+  labels:
+    app: memorandum-be
+spec:
+  selector:
+    matchLabels:
+      app: memorandum-be
+  template:
+    metadata:
+      labels:
+        app: memorandum-be
+    spec:
+      containers:
+      - name: memorandum-backend
+        image: gcr.io/dubh-cloud/memorandum-backend:dev
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: memorandum-dev
+  name: memorandum-be-service
+spec:
+  type: ClusterIP
+  selector:
+    app: memorandum-be
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8080
