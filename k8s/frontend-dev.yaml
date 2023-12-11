@@ -5,6 +5,10 @@ metadata:
   name: memorandum-fe
   labels:
     app: memorandum-fe
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 5m"
 spec:
   selector:
     matchLabels:
