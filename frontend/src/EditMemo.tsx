@@ -7,7 +7,7 @@ export function EditMemo() {
     <>
       <Navbar fixedToTop={true}>
         <Navbar.Group>
-          <Navbar.Heading>Foobar</Navbar.Heading>
+          <Navbar.Heading>Foobar - this is the dev version</Navbar.Heading>
         </Navbar.Group>
       </Navbar>
       <div css={css`margin-top: 50px;`}>
