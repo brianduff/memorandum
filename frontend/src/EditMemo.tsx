@@ -8,7 +8,7 @@ export function EditMemo() {
     <>
       <Navbar fixedToTop={true}>
         <Navbar.Group>
-          <Navbar.Heading>Memo{track && track}</Navbar.Heading>
+          <Navbar.Heading>Memo{track && track} - small change!</Navbar.Heading>
         </Navbar.Group>
       </Navbar>
       <div css={css`margin-top: 50px;`}>
