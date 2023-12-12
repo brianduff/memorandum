@@ -55,6 +55,7 @@ copy_to_bin(
         "utils/**/*.ts",
         "utils/**/*.tsx",
         "public/**/*.svg",
+        "public/**/*.html",
     ]),
 )
 
