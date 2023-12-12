@@ -72,7 +72,8 @@ pkg_tar(
   name = "static_tar",
   srcs = [ ":vite" ],
   package_dir = "/usr/share/nginx/html",
-  strip_prefix = "dist"
+  strip_prefix = "dist",
+  stamp = 1
 )
 
 oci_image(

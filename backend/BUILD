@@ -13,6 +13,7 @@ rust_binary(
 pkg_tar(
     name = "backend_layer",
     srcs = [":backend"],
+    stamp = 1
 )
 
 
