@@ -14,6 +14,7 @@ export function EditMemo() {
       <div css={css`margin-top: 50px;`}>
         <Editor />
       </div>
+      <div>This text should only be visible in memo-dev.</div>
     </>
   )
 }
